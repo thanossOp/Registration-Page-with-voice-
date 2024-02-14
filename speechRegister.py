@@ -23,14 +23,14 @@ def speak(text):
     engine.runAndWait()
 
 
-def get_user_input(prompt,try_count = 0,max_tries = 3):
+def get_user_input(prompt, try_count=0, max_tries=3):
     if try_count >= max_tries:
         speak("Sorry, maximum number of attempts reached. Please try again later.")
         return None
 
     r = sr.Recognizer()
     with sr.Microphone() as source:
-        r.adjust_for_ambient_noise(source,duration=0.2)
+        r.adjust_for_ambient_noise(source, duration=0.2)
         speak(prompt)
         audio = r.listen(source)
 
@@ -45,7 +45,7 @@ def get_user_input(prompt,try_count = 0,max_tries = 3):
     except sr.UnknownValueError as e:
         print(e)
         speak("Cant Understand Try Again")
-        return get_user_input(prompt,try_count + 1,max_tries)
+        return get_user_input(prompt, try_count + 1, max_tries)
 
 
 def validate_email(email):
